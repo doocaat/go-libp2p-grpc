@@ -1,4 +1,4 @@
-module github.com/paralin/go-libp2p-grpc
+module github.com/huyc0769/go-libp2p-grpc
 
 go 1.13
 
