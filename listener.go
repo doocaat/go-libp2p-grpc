@@ -10,17 +10,17 @@ import (
 
 // grpcListener implements the net.Listener interface.
 type grpcListener struct {
-	*GRPCProtocol
+	*GrpcHandler
 	listenerCtx       context.Context
 	listenerCtxCancel context.CancelFunc
 }
 
 // newGrpcListener builds a new GRPC listener.
-func newGrpcListener(proto *GRPCProtocol) net.Listener {
+func newGrpcListener(ghandler *GrpcHandler) net.Listener {
 	l := &grpcListener{
-		GRPCProtocol: proto,
+		GrpcHandler: ghandler,
 	}
-	l.listenerCtx, l.listenerCtxCancel = context.WithCancel(proto.ctx)
+	l.listenerCtx, l.listenerCtxCancel = context.WithCancel(ghandler.ctx)
 	return l
 }
 

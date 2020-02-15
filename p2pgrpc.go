@@ -13,36 +13,36 @@ import (
 // Protocol is the GRPC-over-libp2p protocol.
 const Protocol protocol.ID = "/grpc/0.0.1"
 
-// GRPCProtocol is the GRPC-transported protocol handler.
-type GRPCProtocol struct {
+// GrpcHandler is the GRPC-transported protocol handler.
+type GrpcHandler struct {
 	ctx        context.Context
 	host       host.Host
 	grpcServer *grpc.Server
 	streamCh   chan inet.Stream
 }
 
-// NewGRPCProtocol attaches the GRPC protocol to a host.
-func NewGRPCProtocol(ctx context.Context, host host.Host) *GRPCProtocol {
+// NewGrpcHandler attaches the GRPC protocol to a host.
+func NewGrpcHandler(ctx context.Context, host host.Host) *GrpcHandler {
 	grpcServer := grpc.NewServer()
-	grpcProtocol := &GRPCProtocol{
+	ghandler := &GrpcHandler{
 		ctx:        ctx,
 		host:       host,
 		grpcServer: grpcServer,
 		streamCh:   make(chan inet.Stream),
 	}
-	host.SetStreamHandler(Protocol, grpcProtocol.HandleStream)
+	host.SetStreamHandler(Protocol, ghandler.HandleStream)
 	// Serve will not return until Accept fails, when the ctx is canceled.
-	go grpcServer.Serve(newGrpcListener(grpcProtocol))
-	return grpcProtocol
+	go grpcServer.Serve(newGrpcListener(ghandler))
+	return ghandler
 }
 
 // GetGRPCServer returns the grpc server.
-func (p *GRPCProtocol) GetGRPCServer() *grpc.Server {
+func (p *GrpcHandler) GetGRPCServer() *grpc.Server {
 	return p.grpcServer
 }
 
 // HandleStream handles an incoming stream.
-func (p *GRPCProtocol) HandleStream(stream inet.Stream) {
+func (p *GrpcHandler) HandleStream(stream inet.Stream) {
 	select {
 	case <-p.ctx.Done():
 		return

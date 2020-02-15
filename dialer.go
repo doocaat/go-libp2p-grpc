@@ -13,7 +13,7 @@ import (
 
 // GetDialOption returns the WithDialer option to dial via libp2p.
 // note: ctx should be the root context.
-func (p *GRPCProtocol) GetDialOption(ctx context.Context) grpc.DialOption {
+func (p *GrpcHandler) GetDialOption(ctx context.Context) grpc.DialOption {
 	return grpc.WithDialer(func(peerIdStr string, timeout time.Duration) (net.Conn, error) {
 		subCtx, subCtxCancel := context.WithTimeout(ctx, timeout)
 		defer subCtxCancel()
@@ -41,7 +41,7 @@ func (p *GRPCProtocol) GetDialOption(ctx context.Context) grpc.DialOption {
 
 // Dial attempts to open a GRPC connection over libp2p to a peer.
 // Note that the context is used as the **stream context** not just the dial context.
-func (p *GRPCProtocol) Dial(
+func (p *GrpcHandler) Dial(
 	ctx context.Context,
 	peerID peer.ID,
 	dialOpts ...grpc.DialOption,
