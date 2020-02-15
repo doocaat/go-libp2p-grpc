@@ -8,21 +8,26 @@ go-libp2p-grpc
 
 ## Table of Contents
 
-- [Install](#install)
-- [Contribute](#contribute)
-- [License](#license)
+- [go-libp2p-grpc](#go-libp2p-grpc)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [API](#api)
+    - [Examples](#examples)
+  - [Contribute](#contribute)
+  - [License](#license)
 
 ## Install
 
 ```sh
-go get github.com/paralin/go-libp2p-grpc
+go get github.com/huiscool/go-libp2p-grpc
 ```
 
 ## Usage
 
 ### API
 
-[![GoDoc](https://godoc.org/github.com/paralin/go-libp2p-grpc?status.svg)](https://godoc.org/github.com/paralin/go-libp2p-grpc)
+[![GoDoc](https://godoc.org/github.com/huiscool/go-libp2p-grpc?status.svg)](https://godoc.org/github.com/huiscool/go-libp2p-grpc)
 
 ### Examples 
 

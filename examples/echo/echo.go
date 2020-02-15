@@ -14,8 +14,8 @@ import (
 	ma "github.com/multiformats/go-multiaddr"
 
 	"github.com/golang/protobuf/jsonpb"
-	"github.com/paralin/go-libp2p-grpc"
-	"github.com/paralin/go-libp2p-grpc/examples/echo/echosvc"
+	p2pgrpc "github.com/huiscool/go-libp2p-grpc"
+	"github.com/huiscool/go-libp2p-grpc/examples/echo/echosvc"
 	"google.golang.org/grpc"
 )
 
@@ -65,7 +65,7 @@ func main() {
 		}
 		srvID, err := peer.Decode(*target)
 		if err != nil {
-			panic(fmt.Sprintf("parse peer id %s error: %w", *target, err))
+			panic(fmt.Sprintf("parse peer id %s error: %v", *target, err))
 		}
 		client(srvID, srvAddr, *echoMsg)
 	}
