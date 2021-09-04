@@ -5,7 +5,7 @@ import (
 	"net"
 	"time"
 
-	peer "github.com/libp2p/go-libp2p-peer"
+	peer "github.com/libp2p/go-libp2p-core/peer"
 	ps "github.com/libp2p/go-libp2p-peerstore"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
@@ -18,7 +18,7 @@ func (p *GrpcHandler) GetDialOption(ctx context.Context) grpc.DialOption {
 		subCtx, subCtxCancel := context.WithTimeout(ctx, timeout)
 		defer subCtxCancel()
 
-		id, err := peer.IDB58Decode(peerIdStr)
+		id, err := peer.Decode(peerIdStr)
 		if err != nil {
 			return nil, errors.WithMessage(err, "grpc tried to dial non peer-id")
 		}

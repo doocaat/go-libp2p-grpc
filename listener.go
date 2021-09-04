@@ -5,7 +5,7 @@ import (
 	"io"
 	"net"
 
-	manet "github.com/multiformats/go-multiaddr-net"
+	manet "github.com/multiformats/go-multiaddr/net"
 )
 
 // grpcListener implements the net.Listener interface.
